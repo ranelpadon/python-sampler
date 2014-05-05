@@ -38,17 +38,18 @@ for FILE in FILES:
     folder_prefix = "generated_maps/cities/"
 
   # Open the list of Places to be parsed.
-  # The 'with' keyword has auto-close mechanism when
+  # The 'with' Python keyword has auto-close mechanism when
   #  it has finished reading the input file.
   # Hence, we do not need to add exception handler.
   # Note that it will overwrite the previously fetched map images.
   with open(FILE) as places:
+    # Traverse the current file line by line or per row.
     for place in places:
-      # Remove all leading and trailing spaces per line.
+      # Remove all leading and trailing spaces per line/row.
       place = place.strip()
 
       # Some countries could not be geocoded properly.
-      # They need some equivalent names.
+      # Hence, they need some equivalent names.
       if place == "Congo, the Democratic Republic of the":
         place = "DR Congo"
 
@@ -76,6 +77,7 @@ for FILE in FILES:
       response = urllib.urlopen(url);
 
       # Read the response and pipe it to the JSON loader.
+      # data is a dictionary object.
       data = json.loads(response.read())
 
       # Retrieve the Latitude and Longitude values from the Geocoded JSON object.
