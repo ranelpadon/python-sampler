@@ -2,9 +2,13 @@
 import os, urllib, json
 
 # Specify the filenames to be used as input.
-# Store it in a list structure.
+# Store it in a list data structure.
 FILES = []
+
+# Comment out this line if you do not want to include the maps of Countries.
 FILES += ["COUNTRIES.txt"]
+
+# Comment out this line if you do not want to include the maps of Cities.
 FILES += ["CITIES.txt"]
 
 # Specify the map parameters to be used.
@@ -25,6 +29,8 @@ create_folder("generated_maps/countries")
 create_folder("generated_maps/cities")
 
 for FILE in FILES:
+  # Vary the folder prefix depending on the context.
+  # It is used in the image filenames of the fetched maps.
   if FILE == "COUNTRIES.txt":
     folder_prefix = "generated_maps/countries/"
 
