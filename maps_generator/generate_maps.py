@@ -90,10 +90,11 @@ for FILE in FILES:
         # if you need to accelerate the map fetching.
         print "\tGenerating Zoom Level: " + str(zoom)
 
-        # Specify the filenmae structure/format.
+        # Specify the filename. structure/format.
         filename = folder_prefix + place_raw + " - " + str(zoom) + ".png"
 
-        # Utilize the static images of Nokia Maps.
+        # Utilize the static image of Nokia Maps.
+        # Retrieve and save the fetched image using the specified filename.
         urllib.urlretrieve("http://image.maps.cit.api.here.com/mia/1.6/?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg&w=" + IMAGE_WIDTH + "&h="+ IMAGE_HEIGHT + "&t=8&z=" + str(zoom) + "&lat=" + str(LATITUDE) + "&lon=" + str(LONGITUDE), filename)
 
       print
