@@ -7,13 +7,13 @@ import urllib
 
 # Specify the filenames to be used as input.
 # Store it in a list data structure.
-files = []
+input_files = []
 
 # Comment out this line if you do not want to include the maps of Countries.
-files += ["COUNTRIES.txt"]
+input_files += ["COUNTRIES.txt"]
 
 # Comment out this line if you do not want to include the maps of Cities.
-files += ["CITIES.txt"]
+input_files += ["CITIES.txt"]
 
 # Specify the map parameters to be used.
 ZOOM_LEVEL_MIN = 4
@@ -30,9 +30,9 @@ def create_folder(path):
 
     # Check if the target storage folder exists, create if not yet existing.
     if not os.path.isdir(path):
-      # os.mkdir() could not create nested directories on-the-fly.
-      # Try os.mkdirs for that.
-      os.mkdir(path)
+        # os.mkdir() could not create nested directories on-the-fly.
+        # Try os.mkdirs for that.
+        os.mkdir(path)
 
 # Create the root directory of the map folder and its subfolders.
 create_folder("generated_maps")
@@ -40,10 +40,10 @@ create_folder("generated_maps/countries")
 create_folder("generated_maps/cities")
 
 # Process each file.
-for file in files:
+for input_file in input_files:
     # Vary the folder prefix depending on the context.
     # It is used in the image filenames of the fetched maps.
-    if file == "COUNTRIES.txt":
+    if input_file == "COUNTRIES.txt":
         folder_prefix = "generated_maps/countries/"
 
     else:
@@ -54,7 +54,7 @@ for file in files:
     #  it has finished reading the input file.
     # Hence, we do not need to add exception handler.
     # Note that it will overwrite the previously fetched map images.
-    with open(file) as places:
+    with open(input_file) as places:
         # Traverse the current file line by line, that is, per row.
         for place in places:
             # Remove all leading and trailing spaces per line/row.
@@ -78,7 +78,8 @@ for file in files:
             # This will be used in the filenames of the generated images.
             place_raw = place
 
-            # URL Encode the special characters before we pass it to the Geocoder.
+            # URL Encode the special characters before
+            # we pass it to the Geocoder.
             # This is necessary especially for Macintosh systems.
             place_encoded = urllib.quote_plus(place)
 
@@ -89,13 +90,14 @@ for file in files:
             url = base_url_google + "?address=" + place_encoded + "&sensor=false"
 
             # Send a request for the Geocoded object.
-            response = urllib.urlopen(url);
+            response = urllib.urlopen(url)
 
             # Read the response and pipe it to the JSON loader.
             # data is a dictionary object.
             data = json.loads(response.read())
 
-            # Retrieve the Latitude and Longitude values from the Geocoded JSON object.
+            # Retrieve the Latitude and Longitude values
+            # from the Geocoded JSON object.
             LATITUDE = data["results"][0]["geometry"]["location"]["lat"]
             LONGITUDE = data["results"][0]["geometry"]["location"]["lng"]
 
@@ -112,7 +114,8 @@ for file in files:
                 filename = folder_prefix + place_raw + " - " + str(zoom) + ".png"
 
                 # Utilize the static image of Nokia Maps.
-                # Retrieve and save the fetched image using the specified filename.
+                # Retrieve and save the fetched image
+                # using the specified filename.
                 urllib.urlretrieve(base_url_nokia + "?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg" +
                                       "&w=" + IMAGE_WIDTH + "&h=" + IMAGE_HEIGHT + "&t=8&z=" + str(zoom) +
                                       "&lat=" + str(LATITUDE) + "&lon=" + str(LONGITUDE), filename)
