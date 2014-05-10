@@ -1,7 +1,7 @@
 description
 ==============
 
-This is a Nokia Maps fetcher (with customizable zoom levels, map width, map height, etc) for all countries and cities in the world. It utilizes also the Google's Geocoding API to retrieve the Latitude and Longitude values of a place. We actually used this concie script in our custom development in <a href="http://travel.cnn.com">CNN Travel</a> site. More than maps, this script demonstrates the beauty and power of Python in integrating readily-available libraries and piping data from one source to another.
+This is a Nokia Maps fetcher (with customizable zoom levels, map width, map height, etc) for all countries and cities in the world. It utilizes also the Google's Geocoding API to retrieve the Latitude and Longitude values of a place. We actually used this concise script in our custom development in <a href="http://travel.cnn.com">CNN Travel</a> site. More than maps, this script demonstrates the beauty and power of Python in integrating readily-available libraries and piping data from one source to another.
 
 The script works on Mac/Windows/Linux OS, just download the zipped file from <a href="https://github.com/ranelpadon/python-sampler/archive/master.zip">here</a>, then unzipped the folder and run the "generate_maps.py" Python file.
 
